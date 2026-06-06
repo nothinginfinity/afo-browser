@@ -1,0 +1,11 @@
+name = "afo-browser"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+route = { pattern = "browser.agentfeedoptimization.com/*", custom_domain = true }
+
+# No D1 binding needed — reads from Control Center API
+# No KV needed
+# No secrets needed

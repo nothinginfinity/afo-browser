@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/nothinginfinity/afo-browser/blob/main/schemas/worker.schema.json",
+  "title": "Worker",
+  "description": "A registered Cloudflare Worker in the AFO ecosystem.",
+  "type": "object",
+  "required": ["id", "name", "has_mcp", "has_widget", "health_status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique Worker identifier (slug)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable Worker name"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Custom domain (e.g. control.agentfeedoptimization.com)"
+    },
+    "health_url": {
+      "type": "string",
+      "description": "Full URL to /health endpoint"
+    },
+    "mcp_url": {
+      "type": "string",
+      "description": "Full URL to /mcp endpoint"
+    },
+    "cluster": {
+      "type": "string",
+      "enum": ["message-os", "toolsmith", "docparse", "afo-control", "afo-ui", "infra", "other"],
+      "description": "Logical cluster this Worker belongs to"
+    },
+    "d1_binding": {
+      "type": "string",
+      "description": "D1 database name bound to this Worker, if any"
+    },
+    "has_mcp": {
+      "type": "boolean",
+      "description": "Whether this Worker exposes an MCP endpoint"
+    },
+    "has_widget": {
+      "type": "boolean",
+      "description": "Whether MCP responses include _meta.widget"
+    },
+    "health_status": {
+      "type": "string",
+      "enum": ["ok", "fail", "unknown"],
+      "description": "Last known health check result"
+    },
+    "last_checked": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp of last health check"
+    },
+    "repo_url": {
+      "type": "string",
+      "description": "GitHub repo URL for this Worker's source"
+    },
+    "version": {
+      "type": "string",
+      "description": "Deployed version string"
+    }
+  },
+  "additionalProperties": false
+}

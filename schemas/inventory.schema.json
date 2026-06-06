@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/nothinginfinity/afo-browser/blob/main/schemas/inventory.schema.json",
+  "title": "AFO Inventory Export",
+  "description": "Full inventory export shape returned by GET /api/export",
+  "type": "object",
+  "required": ["generated_at", "version", "workers", "mcp_apps", "tools", "d1_databases", "endpoints"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "description": "AFO Browser version that generated this export"
+    },
+    "workers": {
+      "type": "array",
+      "items": { "$ref": "./worker.schema.json" }
+    },
+    "mcp_apps": {
+      "type": "array",
+      "items": { "$ref": "./worker.schema.json" },
+      "description": "Subset of workers where has_mcp = true"
+    },
+    "tools": {
+      "type": "array",
+      "items": { "$ref": "./tool.schema.json" }
+    },
+    "d1_databases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "bound_to_worker": { "type": "string" },
+          "known_tables": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["worker_id", "method", "path"],
+        "properties": {
+          "worker_id": { "type": "string" },
+          "worker_name": { "type": "string" },
+          "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"] },
+          "path": { "type": "string" },
+          "description": { "type": "string" },
+          "last_status": { "type": "integer" }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

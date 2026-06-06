@@ -1,0 +1,16 @@
+{
+  "name": "afo-browser",
+  "version": "0.1.0",
+  "description": "AFO Browser — human UI + inventory dashboard for the AFO ecosystem",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --env production",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241205.0",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.60.0"
+  }
+}
